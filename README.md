@@ -1,3 +1,5 @@
+# Bowdoin Tagging Standards
+
 ## Overview and Purpose
 
 Cloud resources can have metadata assigned to them in the form of tags.
@@ -28,9 +30,10 @@ tags, defined or custom.
 
 - Valid characters are a-z, 0-9, and - (dash)
 - Only lowercase letters will be used
-- Spaces will not be used; a dash must not be used to separate words only sections of a tag value
+- Spaces will not be used; a dash must not be used to separate words
+   only sections of a tag value
 - Namespaces will not be used to prefix Bowdoin tags;
-  tags without a prefix are assumed to be in Bowdoin namespace (i.e. bowdoin:<tagname>)
+  tags without a prefix are assumed to be in Bowdoin namespace
 - Prefixes may be added to third party tags (i.e., AWS)
 - A key should not be longer than 63 characters
 
@@ -78,6 +81,7 @@ be evaluated and updated for current needs.  This is an effort that
 needs to happen separately.
 
 Valid values:
+
 - prod
 - dev
 - stage
@@ -160,10 +164,10 @@ tag.
 - Foo
 - var
 
-#### Examples:
+#### Examples
+
 - networking-prod
 - entsys-dev
-
 
 ### Application Naming Construct
 
@@ -246,9 +250,13 @@ routeType
 public
 private
 az
+
 For AWS only.
-If the route table is distinct for each AZ (e.g. you are routing to different NATs), you must add the following Zone - 
-Zone should be #l (e.g a, b, c, d, e)
+
+If the route table is distinct for each AZ (e.g. you are routing to
+different NATs), you must add the following Zone - Zone should be #l
+(e.g a, b, c, d, e)
+
 example
 networking-prod-sharedservices-vpc-public
 networking-prod-sharedservices-vpc-public-a
@@ -257,9 +265,9 @@ networking-prod-sharedservices-vpc-public-a
 
 {{appname_construct}} - {{resource_name}} - {{purpose}}
 purpose
-ssh 
-http 
-http 
+ssh
+http
+http
 ...
 resource_name
 elb
@@ -268,8 +276,8 @@ nfs
 instance
 db
 examples
-dns 
-sql 
+dns
+sql
 banner-instance-443
 entsys-prod-nonhybrid-vpc-private
 
@@ -352,14 +360,16 @@ common-dev-sqlmi
 
 {{appname_construct}}-[{{function name}}]
 Function name
-Used when the function is part of a larger app.  It should describe what the function does.
+
+Used when the function is part of a larger app.  It should describe what
+the function does.
+
 example
 sumologicworkday-test
 enrollmentform-prod-updatelivedname
 
-#### Storage
+#### S3
 
-##### S3
 Must be globally unique (due to DNS)
 3-63 characters
 {{account_naming_construct}} - [unique identifier]
@@ -368,16 +378,20 @@ could be {{appName}}
 purpose, string, hash
 This is up to the eye of the beholder.
 
-##### Efs/ebs
+#### Efs/ebs
 
-Primary volumes will be named the same as EC2 instance.  Secondary volumes use this convention.
+Primary volumes will be named the same as EC2 instance.  Secondary
+volumes use this convention.
+
 {{primary volume name}}-disk{{incrementing number}}
 
-#### IAM User/Service Principle – we don’t use for people because we front with Okta
+#### IAM Users
 
 {{account_naming_construct}}
 {{teamName}} -[{{servicename}}-] {{environment}}
-AWS uses Okta for person based access and a IAM user would not be created.  These would be created for service accounts (Terraform, etc.)
+AWS uses Okta for person based access and a IAM user would not be created.
+These would be created for service accounts (Terraform, etc.)
+
 example
 entsys-prod-cdk
 network-prod-sharedservices
@@ -397,14 +411,10 @@ security-prod-resourcegroupstaggingapi
 example
 security-prod-resourcegroupstaggingapi
 
-
-AZURE: SP: use existing service account naming convention
- 
 ### Azure resources
 
-#### Storage
+#### Blob Storage
 
-Blob
 Must be globally unique (due to DNS)
 1-1024 characters
 {{account_naming_construct}} - [unique identifier]
@@ -414,11 +424,14 @@ purpose, string, hash
 This is up to the eye of the beholder.
 Storage Account name
 3-24 characters, no dashes
-Data: {{purpose}}<incrementing number>
+Data: {{purpose}}{{incrementing number}}
+Disks: {{instance name without dashes}}{{incrementing number}}
 
-Disks: {{instance name without dashes}}<incrementing number>
 Attached Disk:
-Primary volumes will be named the same as EC2 instance.  Secondary volumes use this convention.
+
+Primary volumes will be named the same as EC2 instance.  Secondary
+volumes use this convention.
+
 {{primary volume name}}-disk{{incrementing number}}
 Example: vm-0_OsDisk_1_a762254a841f48b1a5c21395590feb1e
 unique identifier
@@ -431,18 +444,49 @@ securityprodcrowdstrikesensor
 sumobrlogsrdfzegjek5hgy
 bowdwvdprofile
 
+#### Service Principals
+
+Use existing service account naming convention
+
 ### Definitions
 
 Imperatives in this document shall be defined as: (based on RFC2119)
-1.	MUST  
-This word, or the terms "REQUIRED" or "SHALL", mean that the definition is an absolute requirement of the specification.
-2.	 MUST NOT  
-This phrase, or the phrase "SHALL NOT", mean that the definition is an absolute prohibition of the specification.
-3.	 SHOULD  
-This word, or the adjective "RECOMMENDED", mean that there may exist valid reasons in particular circumstances to ignore a particular item, but the full implications must be understood and carefully weighed before choosing a different course.
-4.	 SHOULD NOT  
-This phrase, or the phrase "NOT RECOMMENDED" mean that there may exist valid reasons in particular circumstances when the particular behavior is acceptable or even useful, but the full implications should be understood and the case carefully weighed before implementing any behavior described with this label.
-5.	MAY  
-This word, or the adjective "OPTIONAL", mean that an item is truly optional.  One vendor may choose to include the item because a particular marketplace requires it or because the vendor feels that it enhances the product while another vendor may omit the same item.  An implementation which does not include a particular option MUST be prepared to interoperate with another implementation which does include the option, though perhaps with reduced functionality. In the same vein an implementation which does include a particular option MUST be prepared to interoperate with another implementation which does not include the option (except, of course, for the feature the option provides.)
 
+1. MUST
 
+This word, or the terms "REQUIRED" or "SHALL", mean that the definition
+is an absolute requirement of the specification.
+
+1. MUST NOT
+
+This phrase, or the phrase "SHALL NOT", mean that the definition is an
+absolute prohibition of the specification.
+
+1. SHOULD
+
+This word, or the adjective "RECOMMENDED", mean that there may exist
+valid reasons in particular circumstances to ignore a particular item,
+but the full implications must be understood and carefully weighed
+before choosing a different course.
+
+1. SHOULD NOT
+
+This phrase, or the phrase "NOT RECOMMENDED" mean that there may exist
+valid reasons in particular circumstances when the particular behavior
+is acceptable or even useful, but the full implications should be
+understood and the case carefully weighed before implementing any
+behavior described with this label.
+
+1. MAY
+
+This word, or the adjective "OPTIONAL", mean that an item is truly
+optional.  One vendor may choose to include the item because a
+particular marketplace requires it or because the vendor feels that
+it enhances the product while another vendor may omit the same item.
+An implementation which does not include a particular option MUST be
+prepared to interoperate with another implementation which does include
+the option, though perhaps with reduced functionality. In the same
+vein an implementation which does include a particular option MUST
+be prepared to interoperate with another implementation which does
+not include the option (except, of course, for the feature the option
+provides.)
