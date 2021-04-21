@@ -1,5 +1,31 @@
 # Bowdoin Tagging Standards
 
+<!--TOC-->
+
+- [Bowdoin Tagging Standards](#bowdoin-tagging-standards)
+  - [Overview and Purpose](#overview-and-purpose)
+  - [General Naming standard](#general-naming-standard)
+    - [Keys](#keys)
+    - [Values](#values)
+  - [Defined Tags](#defined-tags)
+    - [Name](#name)
+    - [costcenter](#costcenter)
+    - [environment](#environment)
+    - [compliance](#compliance)
+    - [classification](#classification)
+    - [description](#description)
+    - [documentation](#documentation)
+    - [resourcegroup](#resourcegroup)
+  - [Construction of the Name tag value](#construction-of-the-name-tag-value)
+    - [Account Naming Construct](#account-naming-construct)
+    - [Application Naming Construct](#application-naming-construct)
+  - [Naming by resource type](#naming-by-resource-type)
+    - [AWS resources](#aws-resources)
+    - [Azure resources](#azure-resources)
+    - [Definitions](#definitions)
+
+<!--TOC-->
+
 ## Overview and Purpose
 
 Cloud resources can have metadata assigned to them in the form of tags.
