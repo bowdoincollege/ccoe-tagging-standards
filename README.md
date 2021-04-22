@@ -16,7 +16,8 @@
     - [description](#description)
     - [documentation](#documentation)
     - [resourcegroup](#resourcegroup)
-  - [Construction of the Name tag value](#construction-of-the-name-tag-value)
+  - [Custom Tags](#custom-tags)
+  - [Common Naming Components](#common-naming-components)
     - [Account Naming Construct](#account-naming-construct)
     - [Application Naming Construct](#application-naming-construct)
   - [Naming by resource type](#naming-by-resource-type)
@@ -80,8 +81,8 @@ This tag is a default tag for AWS resources, and has special behavior in
 the AWS console.  Because of this, the key of this tag is an exception
 to the naming rule in that it contains a capital letter.
 
-The [format](#construction-of-the-name-tag-value) of this tag's value
-depends on its resource type.
+The [format](#naming-by-resource-type) of this tag's value depends on
+its resource type.
 
 ### costcenter
 
@@ -165,7 +166,9 @@ name.
 Example: All the components of Veeam would have a common value in this
 tag.
 
-## Construction of the Name tag value
+## Custom Tags
+
+## Common Naming Components
 
 ### Account Naming Construct
 
@@ -220,6 +223,14 @@ use if multi region only
 Examples:
 
 - myduodevices-prod-2
+
+#### Incremental Identifier
+
+`increment`
+
+- Use a zero padded number
+- May contain sequential letters
+- start at 01
 
 ## Naming by resource type
 
@@ -276,7 +287,7 @@ Examples:
 
 #### Route Tables
 
-[`vpc`](#vpc)-[`routetype`](#route-type)[-[`az`](#az)]
+[`vpc`](#vpc)-[`routetype`](#route-type)[-[`az`](#availability-zone)]
 
 ##### Route Type
 
@@ -339,15 +350,9 @@ Examples:
 - networking-prod-ping-in
 - networking-test-http-in
 
-#### Instances
+#### EC2 Instance
 
 [`appname`](#application-name)-[`service_type`](#service-type)-[`increment`](#incremental-identifier)
-
-##### Incremental Identifier
-
-- Use a zero padded number
-- May contain sequential letters
-- start at 01
 
 Examples:
 
@@ -371,23 +376,7 @@ Examples:
 
 #### AMI (AWS Machine Image)
 
-{{image name}}[-{{service type}}][-{{unique identifier}}]
-
-Image name is made up of OS name, OS version, and function
-OS Name
-rhel
-centos
-ubuntu
-windows
-
-OS Version
-2012r2ent
-10-{{build number}} i.e. 10-2004
-7
-
-Function
-staffimage
-base
+[`os_name`](#ami-os-name)-[`os_ver`](#ami-os-version)-[`function`](#ami-function)[-[`service_type`](#service-type)][-`unique_identifier`]
 
 Future: Create image specific tags for OS, version, and architecture
 
@@ -395,128 +384,140 @@ Examples:
 
 - rhel8base-web-012
 
+##### AMI OS Name
+
+`os_name`
+
+- rhel
+- centos
+- ubuntu
+- windows
+
+##### AMI OS Version
+
+`os_ver`
+
+- 2012r2ent
+- 10-{{build number}} i.e. 10-2004
+- 7
+
+##### AMI Function
+
+- staffimage
+- base
+
 #### SSH Pem Keys
 
-{{account_naming_construct}} - {{appname_construct}}
+[`account_naming_construct`](#account-naming-construct)-[`appname_construct`](#application-naming-construct)
 
 #### Database Service
 
+[`appname_construct`](#application-naming-construct)-[`db_vendor`](#database-vendor)
+
 Applies to PaaS and SaaS, not self installed on IaaS
 Does not apply to databases inside the service
-{{appname_construct}} - {{db_vendor}}
-db_vendor
-oracle
-mysql
-postgres
-maria
-aurora
-sql
-mssql
-access
-sqlmi
-example
-sqlmanagedinstance-dev-1-mssql
-common-dev-sqlmi
+
+Examples:
+
+- sqlmanagedinstance-dev-1-mssql
+- common-dev-sqlmi
+
+##### Database Vendor
+
+- oracle
+- mysql
+- postgres
+- maria
+- aurora
+- sql
+- mssql
+- access
+- sqlmi
 
 #### Lambda
 
-{{appname_construct}}-[{{function name}}]
-Function name
+[`appname_construct`](#application-naming-construct)-[`function_name`](#lambda-function-name)
+
+Examples:
+
+- sumologicworkday-test
+- enrollmentform-prod-updatelivedname
+
+##### Lambda Function Name
 
 Used when the function is part of a larger app.  It should describe what
 the function does.
 
-example
-sumologicworkday-test
-enrollmentform-prod-updatelivedname
-
 #### S3
+
+[`account_naming_construct`](#account-naming-construct)-[`unique_identifier`](#unique-identifier)
 
 Must be globally unique (due to DNS)
 3-63 characters
-{{account_naming_construct}} - [unique identifier]
-unique identifier
-could be {{appName}}
+
+##### Unique Identifier
+
+could be [`appname_construct`](#application-naming-construct),
 purpose, string, hash
 This is up to the eye of the beholder.
 
-#### Efs/ebs
+#### EFS/EBS
+
+`primary volume name`-disk[`increment`](#incremental-identifier)
 
 Primary volumes will be named the same as EC2 instance.  Secondary
 volumes use this convention.
 
-{{primary volume name}}-disk{{incrementing number}}
-
 #### IAM Users
 
-{{account_naming_construct}}
-{{teamName}} -[{{servicename}}-] {{environment}}
+[`account_naming_construct`](#account-naming-construct)-[`team_name`](#team-name)[-[`service_name`](#service-name)]-[`environment`](#environment)
+
 AWS uses Okta for person based access and a IAM user would not be created.
 These would be created for service accounts (Terraform, etc.)
 
-example
-entsys-prod-cdk
-network-prod-sharedservices
-security-prod-azurecloudappsecurity
+Examples:
+
+- entsys-prod-cdk
+- network-prod-sharedservices
+- security-prod-azurecloudappsecurity
 
 #### IAM Roles
 
-{{account_naming_construct}} - {{appName}}
-{{teamName}} -[{{servicename}}-] {{environment}}- {{appName}}
-example
-security-prod-resourcegroupstaggingapi
+[`account_naming_construct`](#account-naming-construct)-[`environment`](#environment)[-[`app_name`](#application-name)]
+
+Examples:
+
+- security-prod-resourcegroupstaggingapi
 
 #### IAM Group **suggested format**/inconclusive
 
-{{account_naming_construct}} - {{appName}}
-{{teamName}} -[{{servicename}}-] {{environment}}- {{appName}}
-example
-security-prod-resourcegroupstaggingapi
+[`account_naming_construct`](#account-naming-construct)-[-[`service_name`](#service-name)]-[`environment`](#environment)[-[`app_name`](#application-name)]
+
+Examples:
+
+- security-prod-resourcegroupstaggingapi
 
 ### Azure resources
 
 #### Virtual Network Gateway
 
-[`account_naming_construct`](#account-naming-construct)-[`subnetpurpose`](#subnet-purpose)[-[`az`](#availability-zone)]
-{{region}} - {{vngType}}[-{{purpose}}]
-This is an Azure-specific resource.
-VngType
-ergw
-vpngw
+[`region`](#region)-[`vng_type`](#vng-type)[-[`vng_purpose`](#vng-purpose)]
 
-Purpose
+##### VNG Type
+
+- ergw
+- vpngw
+
+##### VNG Purpose
+
 Optional, to differentiate multiple vngs in a single account
 
 #### Blob Storage
 
+[`account_naming_construct`](#account-naming-construct)-[`unique_identifier`](#unique-identifier)
+
 Must be globally unique (due to DNS)
 1-1024 characters
-{{account_naming_construct}} - [unique identifier]
-unique identifier
-could be {{appName}}
-purpose, string, hash
-This is up to the eye of the beholder.
-Storage Account name
-3-24 characters, no dashes
-Data: {{purpose}}{{incrementing number}}
-Disks: {{instance name without dashes}}{{incrementing number}}
-
-Attached Disk:
-
-Primary volumes will be named the same as EC2 instance.  Secondary
-volumes use this convention.
-
-{{primary volume name}}-disk{{incrementing number}}
-Example: vm-0_OsDisk_1_a762254a841f48b1a5c21395590feb1e
-unique identifier
-could be {{appName}}
-purpose, string, hash
-This is up to the eye of the beholder.
-example
-security-prod-crowdstrikesensor
-securityprodcrowdstrikesensor
-sumobrlogsrdfzegjek5hgy
-bowdwvdprofile
 
 #### Service Principals
 
