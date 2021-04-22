@@ -83,8 +83,8 @@ This tag is a default tag for AWS resources, and has special behavior in
 the AWS console.  Because of this, the key of this tag is an exception
 to the naming rule in that it contains a capital letter.
 
-The [format](#naming-by-resource-type) of this tag's value depends on
-its resource type.
+The [value](#naming-by-resource-type) of the Name tag depends on its
+resource type.
 
 ### costcenter
 
@@ -105,9 +105,7 @@ Mandatory: Yes
 A deployment environment is a group of computer, network and
 infrastructure configuration in which an application is deployed and
 executed.  The values of this tag should reflect the current deployment
-environments as defined (v2).  Note: The current environment list should
-be evaluated and updated for current needs.  This is an effort that
-needs to happen separately.
+environments [policy][environments-policy].
 
 Valid values:
 
@@ -116,6 +114,8 @@ Valid values:
 - stage
 - test
 - experimental
+
+[environments-policy]: https://confluence.bowdoin.edu/display/ITKB/Deployment+Environments
 
 ### compliance
 
