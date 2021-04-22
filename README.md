@@ -112,6 +112,7 @@ Valid values:
 - dev
 - stage
 - test
+- experimental
 
 ### compliance
 
@@ -198,29 +199,27 @@ tag.
 ### Application Naming Construct
 
 `appname_construct` =
-[`appname`](#application-name)-[[`environment`](#environment)-][[`number`](#number)-][[`region`](#region)]
+[`appname`](#application-name)-[[`environment`](#environment)-][[`number`](#number-increment)-][[`region`](#region)]
 
 #### Application Name
 
-`appName`
+`appname`
 
 all lowercase one word no dashes
-App environment
-prod
-dev
-stage
-test
-experimental
 
-#### Number
+#### Number Increment
 
 `number`
 
 start at 1
-region
+
+#### Region
+
 use if multi region only
-example
-myduodevices-prod-2
+
+Examples:
+
+- myduodevices-prod-2
 
 ## Naming by resource type
 
@@ -228,136 +227,173 @@ myduodevices-prod-2
 
 #### VPC
 
-{{account_naming_construct}} - {{vpcPurpose}}
-vpcPurpose
+[`account_naming_construct`](#account-naming-construct)-[`vpcpurpose`](#vpc-purpose)
+
+##### VPC Purpose
+
+`vpcpurpose`
+
 all lowercase one word no dashes
 This name needs to be determined in consultation with Networking.
-example
-networking-prod-sharedservices
+
+Examples:
+
+- networking-prod-sharedservices
 
 #### Subnet
 
-{{account_name_construct}} - {{subnetPurpose}}[ - {{az}}]
-subnetPurpose
+[`account_naming_construct`](#account-naming-construct)-[`subnetpurpose`](#subnet-purpose)[-[`az`](#availability-zone)]
+
+##### Subnet Purpose
+
+`subnetpurpose`
+
 all lowercase one word no dashes
-az
-This should not be used in Azure but should be used in AWS.
-a
-b
-...
-example
-networking-prod-wvdstaff-a
-academic-prod-workspaces-c
 
-#### Virtual Network Gateway
+##### Availability Zone
 
-{{region}} - {{vngType}}[-{{purpose}}]
-This is an Azure-specific resource.
-VngType
-ergw
-vpngw
+`az`
 
-Purpose
-Optional, to differentiate multiple vngs in a single account
+- a
+- b
 
-#### VPC/VNet Peering Link
+Examples:
 
-{{source account name}}-{{sourceVPC}}-{{target account name}}-{{targetVPC}}
+- networking-prod-wvdstaff-a
+- academic-prod-workspaces-c
+
+#### VPC Peering Link
+
+[`source_vpc_name`](#vpc)-[`target_vpc_name`](#vpc)
+
 Note that there will be two resources, one on each end of the link.
-example
-entsystems-dev
-networking-hub-something-wvd (networking side of link)
-something-wvd-networking-hub (something side of link)
+
+Examples:
+
+- entsystems-dev
+- networking-hub-something-foo (networking side of link)
+- something-foo-networking-hub (something side of link)
 
 #### Route Tables
 
-{{vpc_naming_construct}} - {{routeType}}[ - {{az}}]
-routeType
-public
-private
-az
+[`vpc`](#vpc)-[`routetype`](#route-type)[-[`az`](#az)]
 
-For AWS only.
+##### Route Type
+
+`routetype`
+
+- public
+- private
+- isolated
 
 If the route table is distinct for each AZ (e.g. you are routing to
 different NATs), you must add the following Zone - Zone should be #l
 (e.g a, b, c, d, e)
 
-example
-networking-prod-sharedservices-vpc-public
-networking-prod-sharedservices-vpc-public-a
+Examples:
+
+- networking-prod-sharedservices-vpc-public
+- networking-prod-sharedservices-vpc-public-a
 
 #### Security Groups
 
-{{appname_construct}} - {{resource_name}} - {{purpose}}
-purpose
-ssh
-http
-http
-...
-resource_name
-elb
-efs
-nfs
-instance
-db
-examples
-dns
-sql
-banner-instance-443
-entsys-prod-nonhybrid-vpc-private
+[`appname`](#application-name)-[`resource_type`](#resource-type)-[`sgpurpose`](#security-group-purpose)
+
+##### Security Group Purpose
+
+- ssh
+- http
+- http
+
+##### Resource Type
+
+- elb
+- efs
+- nfs
+- instance
+- db
+
+Examples:
+
+- dns
+- sql
+- banner-instance-443
+- entsys-prod-nonhybrid-vpc-private
 
 #### Network ACL
 
-{{account_naming_construct}} - {{purpose+direction}}
-purpose+direction
-ssh-in
-http-in
-http-out
-example
-networking-prod-ping-in
+[`account_naming_construct`](#account-naming-construct)-[`naclpurpose`](#network-acl-purpose)[-[`nacldirection`](#network-acl-direction)]
+
+##### Network ACL Purpose
+
+- ssh
+- http
+
+##### Network ACL Direction
+
+- in
+- out
+
+Examples:
+
+- networking-prod-ping-in
+- networking-test-http-in
 
 #### Instances
 
-{{appname_construct}} - [{{service type}}] - [{{incremental identifier}}]
-Incremental Identifier
-Use a zero padded number
-May contain sequential letters
-start at 01
-examples
-security-prod-sumologcollector-1
-security-prod-sumologcollector-01
-security-prod-sumologcollector-a
-security-prod-sumologcollector-db-a
-security-prod-sumologcollector-web-a
+[`appname`](#application-name)-[`service_type`](#service-type)-[`increment`](#incremental-identifier)
+
+##### Incremental Identifier
+
+- Use a zero padded number
+- May contain sequential letters
+- start at 01
+
+Examples:
+
+- security-prod-sumologcollector-1
+- security-prod-sumologcollector-01
+- security-prod-sumologcollector-a
+- security-prod-sumologcollector-db-a
+- security-prod-sumologcollector-web-a
 
 #### Load Balancer
 
 {{appname_construct}}– [{{service type}}] – [{{incremental identifier}}]
-Launch Configuration
+
+#### Launch Configuration
+
 {{appname_construct}}– [{{service type}}] – [{{incremental identifier}}]
-AutoScaling Group
+
+#### AutoScaling Group
+
 {{appname_construct}}– [service type] – [incremental identifier]
 
 #### AMI (AWS Machine Image)
 
 {{image name}}[-{{service type}}][-{{unique identifier}}]
+
 Image name is made up of OS name, OS version, and function
 OS Name
 rhel
 centos
 ubuntu
 windows
+
 OS Version
 2012r2ent
 10-{{build number}} i.e. 10-2004
 7
+
 Function
 staffimage
 base
+
 Future: Create image specific tags for OS, version, and architecture
-examples
-rhel8base-web-012
+
+Examples:
+
+- rhel8base-web-012
 
 #### SSH Pem Keys
 
@@ -438,6 +474,18 @@ example
 security-prod-resourcegroupstaggingapi
 
 ### Azure resources
+
+#### Virtual Network Gateway
+
+[`account_naming_construct`](#account-naming-construct)-[`subnetpurpose`](#subnet-purpose)[-[`az`](#availability-zone)]
+{{region}} - {{vngType}}[-{{purpose}}]
+This is an Azure-specific resource.
+VngType
+ergw
+vpngw
+
+Purpose
+Optional, to differentiate multiple vngs in a single account
 
 #### Blob Storage
 
