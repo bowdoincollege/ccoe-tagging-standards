@@ -4,6 +4,7 @@
 
 - [Bowdoin Tagging Standards](#bowdoin-tagging-standards)
   - [Overview and Purpose](#overview-and-purpose)
+  - [Conventions Used in this Document](#conventions-used-in-this-document)
   - [General Naming standard](#general-naming-standard)
     - [Keys](#keys)
     - [Values](#values)
@@ -33,19 +34,20 @@ Cloud resources can have metadata assigned to them in the form of tags.
 Each tab is a label consisting of a user-defined key and value.  Tags
 are used to help manage, identify, organize, search for and filter
 resources.  Tags can be created to categorize resources by purpose,
-owner, environment, or other criteria.  Each tag has two parts:
+owner, environment, or other criteria.
 
-- tag key (for example: costcenter, Name, environment).  Tag keys may be
-case sensitive depending on the cloud provider
-- A tag value (for example: 1234556, prod).  Like tag keys, tag values
-may be case sensitive depending on the cloud provider
+Each tag has two parts:
+
+1. A tag key (such as `costcenter` or `environment`).
+1. A tag value (such as `1234556` or `prod`).
 
 This document provides an overview and definition of tags required by
 Bowdoin College and the standards for those keys and value that are
 expected.  This is not meant to prevent other tags from being created
 but intended to create a baseline of common tags.  Should a new tag
-become required, it should be added to this document.  Conventions Used
-in this Document
+become required, it should be added to this document.
+
+## Conventions Used in this Document
 
 ## General Naming standard
 
@@ -55,10 +57,10 @@ In order to maintain consistency between platforms and different people
 creating tags, the following naming standard is recommended for all
 tags, defined or custom.
 
-- Valid characters are a-z, 0-9, and - (dash)
+- Valid characters are `a-z`, `0-9`, and `-` (dash)
 - Only lowercase letters will be used
 - Spaces will not be used; a dash must not be used to separate words
-   only sections of a tag value
+  only sections of a tag value
 - Namespaces will not be used to prefix Bowdoin tags;
   tags without a prefix are assumed to be in Bowdoin namespace
 - Prefixes may be added to third party tags (i.e., AWS)
@@ -66,7 +68,7 @@ tags, defined or custom.
 
 ### Values
 
-- Unless specified, valid characters are a-z, 0-9, and - (dash)
+- Unless specified, valid characters are `a-z`, `0-9`, and `-` (dash)
 - Hungarian notation may be used with long names to help improve clarity
 - Unrelated values will be placed in separate keys
 - Compound tag values should not be used
@@ -117,15 +119,15 @@ Valid values:
 
 ### compliance
 
-Required:  If it falls under one of the defined security
-compliance groups
+Mandatory: No (Only if the resource falls under one of the defined security
+compliance groups.)
 
 For regulatory compliance, and will be (GDPR, PCI,
 HIPAA, etc.) as defined by policy.
 
 ### classification
 
-Required: If it has a label other than sensitive.
+Mandatory: No (Only if the resource has a label other than sensitive.)
 
 For data classification.  This is "sensitive" by default, and not needed
 to be specified unless it is different.  The value should be one of
@@ -150,11 +152,11 @@ Valid Characters: Any that are valid to the system it is being used on.
 
 ### documentation
 
-Mandatory: optional tag that is recommended.
+Mandatory: No
 
-This tag is a URL used to point to documentation.  At the time of this
-discuss Confluence is our source of documentation, but it could a URL to
-another source.
+This tag is a URL used to point to documentation.  At this time,
+Confluence is our source of documentation, but it could a URL to another
+source.
 
 ### resourcegroup
 
