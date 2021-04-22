@@ -366,15 +366,15 @@ Examples:
 
 #### Load Balancer
 
-{{appname_construct}}– [{{service type}}] – [{{incremental identifier}}]
+[`appname_construct`](#application-naming-construct)[-[`service_type`](#service-type)][-[`increment`](#incremental-identifier)]
 
 #### Launch Configuration
 
-{{appname_construct}}– [{{service type}}] – [{{incremental identifier}}]
+[`appname_construct`](#application-naming-construct)[-[`service_type`](#service-type)][-[`increment`](#incremental-identifier)]
 
 #### AutoScaling Group
 
-{{appname_construct}}– [service type] – [incremental identifier]
+[`appname_construct`](#application-naming-construct)[-[`service_type`](#service-type)][-[`increment`](#incremental-identifier)]
 
 #### AMI (AWS Machine Image)
 
