@@ -446,7 +446,6 @@ Examples:
 
 Examples:
 
-- sumologicworkday-test
 - enrollmentform-prod-updatelivedname
 
 ##### Lambda Function Name
@@ -494,6 +493,7 @@ Examples:
 Examples:
 
 - security-prod-resourcegroupstaggingapi
+- systems-prod-awsbackupservice
 
 #### IAM Group **suggested format**/inconclusive
 
