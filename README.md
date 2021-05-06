@@ -200,6 +200,7 @@ tag.
 
 - networking-prod
 - entsys-dev
+- academic-workspaces-prod
 
 ### Application Naming Construct
 
@@ -224,7 +225,8 @@ use if multi region only
 
 Examples:
 
-- myduodevices-prod-2
+- myduodevices
+- sqlmanagedinstance-prod-1-eastus
 
 #### Incremental Identifier
 
@@ -252,6 +254,8 @@ This name needs to be determined in consultation with Networking.
 Examples:
 
 - networking-prod-sharedservices
+- entsys-prod-nonhybrid
+- academic-prod-dcsresearch
 
 #### Subnet
 
@@ -273,7 +277,10 @@ all lowercase one word no dashes
 Examples:
 
 - networking-prod-wvdstaff-a
-- academic-prod-workspaces-c
+- academic-workspaces-prod-workspaces-a
+- networking-prod-sharedservices-public-a
+- academic-prod-dcsresearch-public-a
+
 
 #### VPC Peering Link
 
@@ -283,7 +290,6 @@ Note that there will be two resources, one on each end of the link.
 
 Examples:
 
-- entsystems-dev
 - networking-hub-something-foo (networking side of link)
 - something-foo-networking-hub (something side of link)
 
@@ -359,10 +365,8 @@ Examples:
 Examples:
 
 - security-prod-sumologcollector-1
-- security-prod-sumologcollector-01
-- security-prod-sumologcollector-a
-- security-prod-sumologcollector-db-a
-- security-prod-sumologcollector-web-a
+- entsys-prod-myduodevices-1
+- networking-prod-s3proxy-1
 
 #### Load Balancer
 
