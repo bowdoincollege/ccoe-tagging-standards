@@ -18,6 +18,7 @@
     - [documentation](#documentation)
     - [resourcegroup](#resourcegroup)
   - [Custom Tags](#custom-tags)
+    - [project](#project)
   - [Common Naming Components](#common-naming-components)
     - [Account Naming Construct](#account-naming-construct)
     - [Application Naming Construct](#application-naming-construct)
@@ -166,6 +167,21 @@ Example: All the components of Veeam would have a common value in this
 tag.
 
 ## Custom Tags
+
+### project
+
+Status: Optional
+
+A human readable string that identifies the project with which the
+resource is associated.  This should be a single-valued entry and should
+not be a list or otherwise compound entry if the resource supports
+multiple projects.  It is intended to be used for finer-grained usage
+and cost reporting than the [costcenter](#costcenter) tag.
+
+Examples:
+
+- voyant
+- blackboard
 
 ## Common Naming Components
 
