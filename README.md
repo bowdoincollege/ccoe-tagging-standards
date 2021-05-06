@@ -281,7 +281,6 @@ Examples:
 - networking-prod-sharedservices-public-a
 - academic-prod-dcsresearch-public-a
 
-
 #### VPC Peering Link
 
 [`source_vpc_name`](#vpc)-[`target_vpc_name`](#vpc)
