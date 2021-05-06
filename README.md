@@ -77,7 +77,7 @@ tags, defined or custom.
 
 ### Name
 
-Mandatory: Yes
+Status: Required
 
 This tag is a default tag for AWS resources, and has special behavior in
 the AWS console.  Because of this, the key of this tag is an exception
@@ -88,7 +88,7 @@ resource type.
 
 ### costcenter
 
-Mandatory: Yes
+Status: Required
 
 Reflects the Bowdoin Project Code from the financial system.  This is
 used to identify and report portions of an overall invoice or billing
@@ -100,7 +100,7 @@ an existing project code in the Bowdoin financial system.
 
 ### environment
 
-Mandatory: Yes
+Status: Required
 
 A deployment environment is a group of computer, network and
 infrastructure configuration in which an application is deployed and
@@ -119,15 +119,15 @@ Valid values:
 
 ### compliance
 
-Mandatory: No (Only if the resource falls under one of the defined security
-compliance groups.)
+Status: Recommended (if the resource falls under one of the defined
+security compliance groups)
 
 For regulatory compliance, and will be (GDPR, PCI,
 HIPAA, etc.) as defined by policy.
 
 ### classification
 
-Mandatory: No (Only if the resource has a label other than sensitive.)
+Status: Recommended (if the resource has a label other than sensitive)
 
 For data classification.  This is "sensitive" by default, and not needed
 to be specified unless it is different.  The value should be one of
@@ -136,7 +136,7 @@ Restricted, etc.)
 
 ### description
 
-Mandatory: No
+Status: Recommended
 
 A free form place to store a note about a resource that does not fit
 into a defined tag or other process.  This tag is intended to be used by
@@ -152,7 +152,7 @@ Valid Characters: Any that are valid to the system it is being used on.
 
 ### documentation
 
-Mandatory: No
+Status: Optional
 
 This tag is a URL used to point to documentation.  At this time,
 Confluence is our source of documentation, but it could a URL to another
@@ -160,7 +160,7 @@ source.
 
 ### resourcegroup
 
-Mandatory: No
+Status: Optional
 
 Used to identify service, aka resource group which may end up being the
 name.
