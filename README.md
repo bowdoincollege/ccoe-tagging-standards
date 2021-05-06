@@ -119,20 +119,17 @@ Valid values:
 
 ### compliance
 
-Status: Recommended (if the resource falls under one of the defined
-security compliance groups)
+Status: Required
 
-For regulatory compliance, and will be (GDPR, PCI,
-HIPAA, etc.) as defined by policy.
+For regulatory compliance, and will be (GDPR, PCI, HIPAA, etc.) as
+defined by policy.
 
 ### classification
 
-Status: Recommended (if the resource has a label other than sensitive)
+Status: Required
 
-For data classification.  This is "sensitive" by default, and not needed
-to be specified unless it is different.  The value should be one of
-the options in our data classification standard (Public, Sensitive,
-Restricted, etc.)
+For data classification.  The value should be one of the options in our
+data classification standard (Public, Sensitive, Restricted, etc.)
 
 ### description
 
