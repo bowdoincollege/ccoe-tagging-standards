@@ -130,7 +130,10 @@ defined by policy.
 Status: Required
 
 For data classification.  The value should be one of the options in our
-data classification standard (Public, Sensitive, Restricted, etc.)
+[data classification policy][classification-policy] (Public, Sensitive,
+Restricted, etc.)
+
+[classification-policy]: https://bowdoin.teamdynamix.com/TDClient/1814/Portal/KB/ArticleDet?ID=71630
 
 ### description
 
