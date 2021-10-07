@@ -171,7 +171,7 @@ name.
 Example: All the components of Veeam would have a common value in this
 tag.
 
-### managed by
+### managedby
 
 Status: Required
 
@@ -179,7 +179,7 @@ Used to identify responsible group, aka superseding a person which group is resp
 
 Example: Enterprise Systems (be consistent with naming)
 
-### created by
+### createdby
 
 Status: Optional
 
