@@ -123,7 +123,16 @@ Valid values:
 Status: Required
 
 For regulatory compliance, and will be (GDPR, PCI, HIPAA, etc.) as
-defined by policy.
+defined by policy.  If there are no compliance requirements for this
+resource, use "None".
+
+Examples:
+
+- GDPR
+- PCI
+- HIPPA
+- FERPA
+- None
 
 ### classification
 
