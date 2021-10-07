@@ -17,6 +17,8 @@
     - [description](#description)
     - [documentation](#documentation)
     - [resourcegroup](#resourcegroup)
+    - [managedby](#managedby)
+    - [createdby](#createdby)
   - [Custom Tags](#custom-tags)
     - [project](#project)
   - [Common Naming Components](#common-naming-components)
@@ -168,6 +170,23 @@ name.
 
 Example: All the components of Veeam would have a common value in this
 tag.
+
+### managed by
+
+Status: Required
+
+Used to identify responsible group, aka superseding a person which group is responsible for this resource.
+
+Example: Enterprise Systems (be consistent with naming)
+
+### created by
+
+Status: Optional
+
+Used to identify primary person that created, architected or was originally responsible for the resource, aka resource group which may end up being the
+name.
+
+Example: Jeff Doing
 
 ## Custom Tags
 
