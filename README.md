@@ -1,6 +1,6 @@
 # Bowdoin Tagging Standards
-
-<!--TOC-->
+# The Bowdoin Tagging Standard Document location has moved from this location. It can now be accessed in confluence here: 
+<!--TOC-->https://bowdoin.atlassian.net/wiki/spaces/ITKB/pages/2164589/Cloud+Tagging+Standardshttps://bowdoin.atlassian.net/wiki/spaces/ITKB/pages/2164589/Cloud+Tagging+Standards
 
 - [Bowdoin Tagging Standards](#bowdoin-tagging-standards)
   - [Overview and Purpose](#overview-and-purpose)
