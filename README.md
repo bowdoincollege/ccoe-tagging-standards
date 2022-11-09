@@ -1,5 +1,5 @@
 # Bowdoin Tagging Standards
-
+## Moved to Confluence:[Cloud Tagging Standards] (https://bowdoin.atlassian.net/wiki/spaces/ITKB/pages/2164589/Cloud+Tagging+Standards)
 <!--TOC-->
 
 - [Bowdoin Tagging Standards](#bowdoin-tagging-standards)
