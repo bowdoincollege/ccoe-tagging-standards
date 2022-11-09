@@ -30,7 +30,7 @@
     - [Definitions](#definitions)
 
 <!--TOC-->
-
+## Page moved to Confluence: https://bowdoin.atlassian.net/wiki/spaces/ITKB/pages/2164589/Cloud+Tagging+Standards
 ## Overview and Purpose
 
 Cloud resources can have metadata assigned to them in the form of tags.
